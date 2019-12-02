@@ -1,0 +1,7 @@
+deactivate
+workon django-bitfield
+rmvirtualenv django-bitfield
+mkvirtualenv --python=python3.7 django-bitfield
+mkvirtualenv --python=python3.6 django-bitfield
+
+pip3 install --no-cache-dir -r ./requirements.txt

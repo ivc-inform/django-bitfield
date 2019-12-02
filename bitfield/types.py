@@ -265,3 +265,21 @@ if django.VERSION[:2] >= (1, 8):
         Database.extensions.register_adapter(BitHandler, lambda x: Database.extensions.AsIs(int(x)))
     except ImproperlyConfigured:
         pass
+elif django.VERSION[:2] >= (3, 0):
+    from django.core.exceptions import ImproperlyConfigured
+
+    # We need to register adapters in Django 1.8 in order to prevent
+    # "ProgrammingError: can't adapt type"
+    try:
+        from django.db.backends.sqlite3.base import Database
+        Database.register_adapter(Bit, lambda x: int(x))
+        Database.register_adapter(BitHandler, lambda x: int(x))
+    except ImproperlyConfigured:
+        pass
+
+    try:
+        from django.db.backends.postgresql_psycopg2.base import Database
+        Database.extensions.register_adapter(Bit, lambda x: Database.extensions.AsIs(int(x)))
+        Database.extensions.register_adapter(BitHandler, lambda x: Database.extensions.AsIs(int(x)))
+    except ImproperlyConfigured:
+        pass

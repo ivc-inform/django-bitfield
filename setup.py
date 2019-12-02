@@ -14,24 +14,30 @@ class GetVersion(ast.NodeVisitor):
             assert not hasattr(self, 'VERSION')
             self.VERSION = node.value.s
 
+this_directory = os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(this_directory, 'README.rst')) as f:
+    long_description = f.read()
+
 setup(
-    name='django-bitfield',
+    name='django-ivc-bitfield',
     version=GetVersion(os.path.join(os.path.dirname(__file__), 'bitfield', '__init__.py')).VERSION,
     author='Disqus',
-    author_email='opensource@disqus.com',
-    url='https://github.com/disqus/django-bitfield',
+    author_email='info@ivc-inform.ru',
+    url='https://github.com/ivc-inform/django-bitfield.git',
     description='BitField in Django',
+    long_description=long_description,
+    long_description_content_type='text/x-rst',
     packages=find_packages(),
     zip_safe=False,
-    install_requires=[
-        'Django>=1.4.22',
-        'six',
-    ],
+    # install_requires=[
+    #     'Django>=3.0',
+    #     'six',
+    # ],
     extras_require={
         'tests': [
             'flake8',
             'mysqlclient',
-            'psycopg2>=2.3',
+            'psycopg2',
             'pytest-django',
         ],
     },
@@ -43,10 +49,8 @@ setup(
         'Operating System :: OS Independent',
         'Topic :: Software Development',
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
     ],
 )
