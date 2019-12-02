@@ -29,10 +29,11 @@ setup(
     long_description_content_type='text/x-rst',
     packages=find_packages(),
     zip_safe=False,
-    # install_requires=[
-    #     'Django>=3.0',
-    #     'six',
-    # ],
+    install_requires=[
+        'Django>=3.0',
+        'six',
+        'psycopg2'
+    ],
     extras_require={
         'tests': [
             'flake8',
