@@ -4,6 +4,7 @@ import ast
 import os.path
 from setuptools import setup, find_packages
 
+
 class GetVersion(ast.NodeVisitor):
     def __init__(self, path):
         with open(path) as f:
@@ -13,6 +14,7 @@ class GetVersion(ast.NodeVisitor):
         if any(target.id == 'VERSION' for target in node.targets):
             assert not hasattr(self, 'VERSION')
             self.VERSION = node.value.s
+
 
 this_directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(this_directory, 'README.rst')) as f:
@@ -30,7 +32,7 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     install_requires=[
-        'Django>=3.0',
+        'Django>=2.2',
         'six',
         'psycopg2'
     ],
